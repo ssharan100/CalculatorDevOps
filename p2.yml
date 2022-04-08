@@ -1,9 +1,14 @@
 ---
-- name: Deploy a jar file
+- name: Pull docker image of Calculator
   hosts: all
-  remote_user: shree
   tasks:
-    - name: Copy jar file to home directory
-      copy:
-        src: ./target/CalculatorDevOps-1.0-SNAPSHOT-jar-with-dependencies.jar
-        dest: ~/
+    - name: Start docker service
+      service:
+        name: docker
+        state: started
+
+    - name: pull docker image
+      shell: docker pull 1651078/calculator_dev_ops
+
+    - name: running container
+      shell: docker run -it -d 1651078/calculator_dev_ops
