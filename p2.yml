@@ -10,8 +10,12 @@
     - name: pull docker image
       shell: docker pull 1651078/calculator_dev_ops
 
-    - name: running container
-      shell: docker run -it -d --name sci_calc 1651078/calculator_dev_ops /bin/bash
-      
-    - name: attaching pseudo-TTY
-      shell: docker attach sci_calc
+    - name: Restart a container
+      docker_container:
+        name: sci_calc
+        image: 1651078/calculator_dev_ops
+        state: started
+        ports:
+          - "8999:9000"
+        tty: true
+        detach: true
