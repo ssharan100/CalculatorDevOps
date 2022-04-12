@@ -11,4 +11,4 @@
       shell: docker pull 1651078/calculator_dev_ops
 
     - name: running container
-      shell: docker run -d 1651078/calculator_dev_ops /bin/bash
+      shell: docker run 1651078/calculator_dev_ops /bin/bash
